@@ -6,6 +6,27 @@
 -->
 <ion-view title="{{Restaurant.name}}">
   <ion-content has-header="true" padding="true">
-      <h1>teste</h1>
+      <div class="list card">
+
+          <div class="item item-avatar">
+              <img src="img/{{Restaurant.picName}}.jpg">
+              <h2>{{Restaurant.name}}</h2>
+              <p>{{Restaurant.description}}</p>
+          </div>
+
+          <div class="item item-body">
+              <div class="list" ng-repeat="dishes in Restaurant.menu">
+
+                  <div class="item item-divider" >{{dishes.name}}</div>
+
+                  <ul class="list">
+                      <li class="item"  ng-repeat="item in dishes.itemList" ng-click="goToItem(Restaurant.id,item.id)">{{item.name}}</li>
+
+                  </ul>
+              </div>
+
+          </div>
+
+      </div>
   </ion-content>
 </ion-view>

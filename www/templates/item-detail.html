@@ -1,0 +1,20 @@
+<ion-view title="Restaurant">
+    <ion-content has-header="true" padding="true">
+        <div class="list">
+            <div class="item item-divider">{{menuDeatil.name}}</div>
+            <ul class="list">
+                <li class="item"  ng-repeat="item in menuDeatil.itemList">
+                    <h3>{{item.name}}</h3>
+                    <ul class="list">
+                        <li class="item"  ng-repeat="quan in item.quantity">
+                            <div class="row">
+                                <div class="col col-50">{{quan.description}}</div>
+                                <div class="col">{{quan.price}}</div>
+                                <div class="col"><div class="icon ion-plus"></div></div>
+                            </div>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </ion-content>
+</ion-view>

@@ -165,6 +165,9 @@ angular.module('starter.services', [])
     get: function(restaurantId) {
       // Simple index lookup
       return restaurant[restaurantId];
-    }
+    },
+      getMenuDetail:function(restaurantID,itemID){
+          return restaurant[restaurantID].menu[itemID]
+      }
   }
 });
