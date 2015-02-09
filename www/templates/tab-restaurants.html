@@ -1,0 +1,19 @@
+<ion-view title="R  estaurant">
+  <ion-content class="padding">
+    <h1>Restaurants</h1>
+      <!--<ion-list>-->
+          <!--<ion-item ng-repeat="restaurant in Restaurants" type="item-text-wrap" href="#/tab/restaurant/{{restaurant.id}}">-->
+              <!--{{restaurant.name}}-->
+          <!--</ion-item>-->
+      <!--</ion-list>-->
+      <div class="list">
+
+          <a class="item item-thumbnail-left" href="#/tab/restaurant/{{restaurant.id}}" ng-repeat="restaurant in Restaurants">
+              <img src="img/ionic.png">
+              <h2>{{restaurant.name}}</h2>
+              <p>{{restaurant.description}}</p>
+          </a>
+
+      </div>
+  </ion-content>
+</ion-view>
