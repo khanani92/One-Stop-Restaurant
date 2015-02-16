@@ -3,10 +3,10 @@ angular.module('starter.services', [])
 /**
  * A simple example service that returns some data.
  */
-.factory('Restaurant', function() {
-  // Might use a resource here that returns a JSON array
+    .factory('Restaurant', function() {
+        // Might use a resource here that returns a JSON array
 
-  // Some fake testing data
+        // Some fake testing data
         var restaurant = [
             { id: 0, name: 'Optp',description:'Pizza, Fast food' ,menu:[
                 {id:0,name:'Pizza',itemList:[
@@ -158,16 +158,34 @@ angular.module('starter.services', [])
                 ]}
             ],picName:'chester'}];
 
-  return {
-    all: function() {
-      return restaurant;
-    },
-    get: function(restaurantId) {
-      // Simple index lookup
-      return restaurant[restaurantId];
-    },
-      getMenuDetail:function(restaurantID,itemID){
-          return restaurant[restaurantID].menu[itemID]
-      }
-  }
-});
+        return {
+            all: function() {
+                return restaurant;
+            },
+            get: function(restaurantId) {
+                // Simple index lookup
+                return restaurant[restaurantId];
+            },
+            getMenuDetail:function(restaurantID,dishesID,itemID){
+                return restaurant[restaurantID].menu[dishesID].itemList[itemID]
+            }
+        }
+    })
+
+    .factory('Cart', function() {
+        var cart = [];
+
+        return {
+            addToCart:function(productInfo){
+                cart = productInfo;
+                return cart
+            },
+            deleteFromCart:function(productInfo){
+                console.log(productInfo)
+            },
+            getCart:function(){
+                return cart
+            }
+
+        }
+    })
