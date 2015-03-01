@@ -1,18 +1,33 @@
 <ion-view title="Restaurant">
-  <ion-content class="padding">
-      <!--<ion-list>-->
-          <!--<ion-item ng-repeat="restaurant in Restaurants" type="item-text-wrap" href="#/tab/restaurant/{{restaurant.id}}">-->
-              <!--{{restaurant.name}}-->
-          <!--</ion-item>-->
-      <!--</ion-list>-->
-      <div class="list">
+    <ion-content class="padding" ng-show="user.uid != undefined">
+        <!--<ion-list>-->
+        <!--<ion-item ng-repeat="restaurant in Restaurants" type="item-text-wrap" href="#/tab/restaurant/{{restaurant.id}}">-->
+        <!--{{restaurant.name}}-->
+        <!--</ion-item>-->
+        <!--</ion-list>-->
+        <div class="list">
 
-          <a class="item item-thumbnail-left" href="#/tab/restaurant/{{restaurant.id}}" ng-repeat="restaurant in Restaurants">
-              <img src="img/{{restaurant.picName}}.jpg">
-              <h2>{{restaurant.name}}</h2>
-              <p>{{restaurant.description}}</p>
-          </a>
+            <a class="item item-thumbnail-left" href="#/tab/restaurant/{{restaurant.id}}" ng-repeat="restaurant in Restaurants">
+                <img src="img/{{restaurant.picName}}.jpg">
+                <h2>{{restaurant.name}}</h2>
+                <p>{{restaurant.description}}</p>
+            </a>
 
-      </div>
-  </ion-content>
+        </div>
+    </ion-content>
+
+    <ion-content has-header="true" padding="true" class="vcenter" ng-show="user.uid == undefined">
+        <div class="row row-center">
+            <div class="col col-center">
+                Please Login to Continue Placing Orders !!
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <a class="button button-block button-positive" ng-href="#/tab/account">
+                    Go to Login
+                </a>
+            </div>
+        </div>
+    </ion-content>
 </ion-view>

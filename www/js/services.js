@@ -1,9 +1,83 @@
-angular.module('starter.services', [])
+angular.module('starter.services', ['firebase'])
 
 /**
  * A simple example service that returns some data.
  */
-    .factory('Restaurant', function() {
+    .factory('User',["$timeout","$firebase", function($timeout,$firebase ) {
+        var ref = new Firebase("https://onestoprestaurant.firebaseio.com/");
+        var auth = $firebase(ref);
+        var user = {};
+
+        return {
+            login: function(email, password, callback) {
+                ref.authWithPassword({
+                    email: email,
+                    password: password,
+                    rememberMe: false
+                },function(err,res) {
+                    user = res;
+                    if (callback) {
+                        $timeout(function() {
+                            callback(res);
+                        });
+                    }
+                }, function(err) {
+                    callback(err);
+                });
+            },
+            register: function(email, password, callback) {
+                ref.createUser({email:email, password:password},function(res) {
+                    user = res;
+                    if (callback) {
+                        callback(res);
+                    }
+                })
+                //    function(err) {
+                //  callback(err);
+                //});
+            },
+            getUser: function() {
+                if(user.uid){
+                    return user;
+                }else{
+                  var userTemp=JSON.parse(localStorage.getItem('userInfo'))
+                if((userTemp)&&(userTemp.uid)){
+                    user =userTemp
+                    return user
+                }else{
+                    return {}
+                }
+                }
+
+            },
+            logout: function() {
+                ref.unauth();
+                user = {};
+                return user;
+            },
+            changeEmail: function(email,oldPassword,newPassword,callback){
+                ref.changePassword({
+                    email       : email,
+                    oldPassword : oldPassword,
+                    newPassword : newPassword
+                }, function(error) {
+                    if (error === null) {
+                        console.log("Email changed successfully");
+                    } else {
+                        console.log("Error changing email:", error);
+                    }
+                });
+            }
+
+
+        }
+    }])
+
+    .factory('Restaurant', function($firebase,$rootScope) {
+        //
+        var CON = new Firebase("https://onestoprestaurant.firebaseio.com/");
+        var resRef = CON.child('restuarants');
+        //$rootScope.restaurants = $firebase(resRef).$asArray();
         // Might use a resource here that returns a JSON array
 
         // Some fake testing data
@@ -168,6 +242,9 @@ angular.module('starter.services', [])
             },
             getMenuDetail:function(restaurantID,dishesID,itemID){
                 return restaurant[restaurantID].menu[dishesID].itemList[itemID]
+            },
+            saveRestaurant:function(){
+
             }
         }
     })
@@ -189,3 +266,5 @@ angular.module('starter.services', [])
 
         }
     })
+
+
