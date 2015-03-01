@@ -254,7 +254,18 @@ angular.module('starter.services', ['firebase'])
 
         return {
             addToCart:function(productInfo){
-                cart = productInfo;
+
+              var itemCheck = cart.filter(function(item){
+                  return (item.resturantID == productInfo.resturantID)&&(item.dishID == productInfo.dishID)&&(item.itemID == productInfo.itemID)&&(item.quantityID == productInfo.quantityID)
+               })
+
+                console.log(itemCheck)
+                if((itemCheck) &&(itemCheck.length > 0)){
+                    itemCheck[0].quantity++;
+                }else{
+                    productInfo.quantity = 0
+                    cart.push(productInfo);
+                }
                 return cart
             },
             deleteFromCart:function(productInfo){
