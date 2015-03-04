@@ -15,12 +15,12 @@
             </div>
 
             <div class="item item-body">
-                <div class="list" ng-repeat="dishes in Restaurant.menu">
+                <div class="list" ng-repeat="(dishKey,dishValue) in Restaurant.menu">
 
-                    <div class="item item-divider" >{{dishes.name}}</div>
+                    <div class="item item-divider" >{{dishValue.name}}</div>
 
                     <ul class="list">
-                        <li class="item"  ng-repeat="item in dishes.itemList" ng-click="goToItem(Restaurant.id,dishes.id,item.id)">{{item.name}}</li>
+                        <li class="item"  ng-repeat="(itemKey,itemValue) in dishValue.itemList" ng-click="goToItem(Restaurant.$id,dishKey,itemKey)">{{itemValue.name}}</li>
 
                     </ul>
                 </div>

@@ -7,7 +7,7 @@
         <!--</ion-list>-->
         <div class="list">
 
-            <a class="item item-thumbnail-left" href="#/tab/restaurant/{{restaurant.id}}" ng-repeat="restaurant in Restaurants">
+            <a class="item item-thumbnail-left" href="#/tab/restaurant/{{restaurant.$id}}" ng-repeat="restaurant in Restaurants">
                 <img src="img/{{restaurant.picName}}.jpg">
                 <h2>{{restaurant.name}}</h2>
                 <p>{{restaurant.description}}</p>

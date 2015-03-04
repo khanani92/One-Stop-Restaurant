@@ -3,11 +3,11 @@
         <div class="list">
             <div class="item item-divider">{{menuDeatil.name}}</div>
             <ul class="list">
-                <li class="item"  ng-repeat="quan in menuDeatil.quantity">
+                <li class="item"  ng-repeat=" (quanKey,quanValue) in menuDeatil.quantity ">
                     <div class="row">
-                        <div class="col col-50">{{quan.description}}</div>
-                        <div class="col">{{quan.price}}</div>
-                        <div class="col"><div class="icon ion-plus" ng-click="addToCart(quan.id)"></div></div>
+                        <div class="col col-50">{{quanValue.description}}</div>
+                        <div class="col">{{quanValue.price}}</div>
+                        <div class="col"><div class="icon ion-plus" ng-click="addToCart(quanKey)"></div></div>
                     </div>
                 </li>
             </ul>
