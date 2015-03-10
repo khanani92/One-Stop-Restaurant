@@ -1,6 +1,22 @@
 <ion-view title="Cart">
-  <ion-content class="padding">
-      <h1>{{cart}}</h1>
+          <ion-content has-header="true" padding="true">
+              <div class="list">
+                  <div class="item item-divider">Your Order</div>
+                  <ul class="list">
+                      <li class="item"  ng-repeat=" (cartKey,cartValue) in cart ">
+                          <div class="row">
+                              <div class="col">Resturant Name</div>
+                              <div class="col"> Dish Name</div>
+                              <div class="col"> Item Name</div>
+                              <div class="col"> Item Quantity</div>
+                              <div class="col"> Item Price Quantity</div>
+                              <div class="col"> Quantity </div>
+                              <div class="col"> Total Price</div>
+                              <div class="col"><div class="icon ion-plus" ng-click=""></div></div>
+                          </div>
+                      </li>
+                  </ul>
+              </div>
+          </ion-content>
 
-  </ion-content>
 </ion-view>

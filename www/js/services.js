@@ -288,7 +288,7 @@ angular.module('starter.services', ['firebase'])
         }
     })
 
-    .factory('Cart', function() {
+    .factory('Cart',["Restaurant", function(Restaurant) {
         var cart = [];
 
         return {
@@ -311,10 +311,25 @@ angular.module('starter.services', ['firebase'])
                 console.log(productInfo)
             },
             getCart:function(){
+                var currentCart = []
+                var orderTemp = {}
+                var tempRest = Restaurant.all()
+                  cart.forEach(function(product){
+                      tempRest.filter(function(rest){
+                          if(product.resturantID == rest.$id){
+                              orderTemp.resturantName = rest.name;
+                              rest.menu.filter(function(dish){
+                                dis
+                              })
+
+                              console.log(orderTemp)
+                          }
+                      })
+                  })
                 return cart
             }
 
         }
-    })
+    }])
 
 
