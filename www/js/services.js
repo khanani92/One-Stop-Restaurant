@@ -302,7 +302,7 @@ angular.module('starter.services', ['firebase'])
                 if((itemCheck) &&(itemCheck.length > 0)){
                     itemCheck[0].quantity++;
                 }else{
-                    productInfo.quantity = 0
+                    productInfo.quantity = 1
                     cart.push(productInfo);
                 }
                 return cart
@@ -312,21 +312,40 @@ angular.module('starter.services', ['firebase'])
             },
             getCart:function(){
                 var currentCart = []
-                var orderTemp = {}
                 var tempRest = Restaurant.all()
-                  cart.forEach(function(product){
-                      tempRest.filter(function(rest){
-                          if(product.resturantID == rest.$id){
-                              orderTemp.resturantName = rest.name;
-                              rest.menu.filter(function(dish){
-                                dis
-                              })
+                cart.forEach(function(product){
+                    var orderTemp = {}
+                    tempRest.filter(function(rest){
+                        if(product.resturantID == rest.$id){
+                            orderTemp.resturantName = rest.name;
+                            for (var dish in rest.menu) {
+                                if(dish == product.dishID){
+                                    orderTemp.dishName  =  rest.menu[dish].name;
+                                    // return orderTemp;
+                                    for (var item in rest.menu[dish].itemList) {
+                                        if(item == product.itemID){
+                                            orderTemp.itemName  =  rest.menu[dish].itemList[item].name;
+                                            for (var quantity in rest.menu[dish].itemList[item].quantity) {
+                                                if(quantity == product.quantityID){
+                                                    orderTemp.quantityName = rest.menu[dish].itemList[item].quantity[quantity].description;
+                                                    orderTemp.quantityPrice = rest.menu[dish].itemList[item].quantity[quantity].price;
+                                                    orderTemp.quantity = product.quantity
+                                                    currentCart.push(orderTemp)
+                                                }
+                                            }
+                                            // return orderTemp;
 
-                              console.log(orderTemp)
-                          }
-                      })
-                  })
-                return cart
+                                        }
+                                    }
+
+                                }
+                            }
+
+                        }
+                    })
+                })
+                //console.log(currentCart)
+                return currentCart
             }
 
         }

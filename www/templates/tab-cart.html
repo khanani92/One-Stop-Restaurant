@@ -3,16 +3,22 @@
               <div class="list">
                   <div class="item item-divider">Your Order</div>
                   <ul class="list">
-                      <li class="item"  ng-repeat=" (cartKey,cartValue) in cart ">
+                      <li class="item"  ng-repeat=" (cartKey,cartValue) in cart track by $index">
                           <div class="row">
-                              <div class="col">Resturant Name</div>
-                              <div class="col"> Dish Name</div>
-                              <div class="col"> Item Name</div>
-                              <div class="col"> Item Quantity</div>
-                              <div class="col"> Item Price Quantity</div>
-                              <div class="col"> Quantity </div>
-                              <div class="col"> Total Price</div>
-                              <div class="col"><div class="icon ion-plus" ng-click=""></div></div>
+                              <div class="col">{{cartValue.resturantName}}</div>
+                              <div class="col"> {{cartValue.dishName}}</div>
+                              <div class="col"> {{cartValue.itemName}}</div>
+                              <div class="col"> {{cartValue.quantityName}}</div>
+                              <div class="col"> {{cartValue.quantityPrice}}</div>
+                              <div class="col">
+                                  <div class="row">
+                                      <div class="col"><div class="icon ion-plus" ng-click="" style="float: left"></div></div>
+                                      <div class="col">{{cartValue.quantity}}</div>
+                                      <div class="col"><div class="icon ion-minus" ng-click="" style="float: right"></div></div>
+                                  </div>
+                                     </div>
+                              <div class="col"> {{cartValue.quantityPrice * cartValue.quantity}}  </div>
+                              <div class="col"><div class="icon ion-trash-b" ng-click=""></div></div>
                           </div>
                       </li>
                   </ul>
