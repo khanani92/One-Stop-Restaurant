@@ -8,6 +8,35 @@ angular.module('starter.controllers', [])
 
     .controller('CartCtrl', function($scope,Cart) {
         $scope.cart =  Cart.getCart();
+        $scope.cartIsEmpty = true;
+       if($scope.cart.length == 0){
+            $scope.cartIsEmpty = false;
+        }else{
+            $scope.cartIsEmpty =true;
+        }
+
+        $scope.addQuan =function(index){
+            $scope.cart[index].quantity++;
+
+        }
+        $scope.subQuan =function(index){
+            if($scope.cart[index].quantity == 1){
+          var tempCart = $scope.cart
+                tempCart.splice(index, 1)  ;
+                $scope.cart = tempCart
+                if($scope.cart.length == 0){
+                    $scope.cartIsEmpty = false;
+                }else{
+                    $scope.cartIsEmpty =true;
+                }
+            }else{
+                $scope.cart[index].quantity--;
+            }
+
+
+
+        }
+
     })
 
     .controller('RestaurantDetailCtrl', function($scope, $stateParams, Restaurant,$location,User) {
