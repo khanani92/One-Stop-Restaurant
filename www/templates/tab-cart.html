@@ -1,6 +1,6 @@
 <ion-view title="Cart">
           <ion-content has-header="true" padding="true">
-              <div class="list">
+              <div class="list" ng-show="showList">
                   <div class="item item-divider">Your Order</div>
                   <ul class="list">
                       <li ng-hide="cartIsEmpty">Your Cart is Empty. Please First Place your order.</li>
@@ -19,10 +19,20 @@
 </div>
 
                               <div class="col"> {{cartValue.quantityPrice * cartValue.quantity}}  </div>
-                              <div class="col"><div class="icon ion-trash-b" ng-click=""></div></div>
+                              <div class="col"><div class="icon ion-trash-b" ng-click="deleteItem($index)"></div></div>
                           </div>
                       </li>
+
                   </ul>
+                  <div class="row">
+                      <div class="col col-33 col-offset-67"><div ng-show="cartIsEmpty"><div class="button icon-right ion-chevron-right button-calm" ng-click="placeOrder()">Place Order</div></div></div>
+                  </div>
+
+              </div>
+              <div class="card" ng-hide="showList">
+                  <div class="item item-text-wrap">
+                      Thanks for yout Order and Using the APP.
+                  </div>
               </div>
           </ion-content>
 

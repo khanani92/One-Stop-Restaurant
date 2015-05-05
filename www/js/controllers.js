@@ -9,6 +9,7 @@ angular.module('starter.controllers', [])
     .controller('CartCtrl', function($scope,Cart) {
         $scope.cart =  Cart.getCart();
         $scope.cartIsEmpty = true;
+        $scope.showList = true;
        if($scope.cart.length == 0){
             $scope.cartIsEmpty = false;
         }else{
@@ -32,9 +33,20 @@ angular.module('starter.controllers', [])
             }else{
                 $scope.cart[index].quantity--;
             }
+        }
+        $scope.deleteItem = function(index){
+            $scope.cart = Cart.deleteFromCart( $scope.cart,index)
 
-
-
+            if($scope.cart.length == 0){
+                $scope.cartIsEmpty = false;
+            }else{
+                $scope.cartIsEmpty =true;
+            }
+        }
+        $scope.placeOrder =function(){
+            $scope.showList = false;
+            $scope.cart= Cart.saveCart()
+            
         }
 
     })

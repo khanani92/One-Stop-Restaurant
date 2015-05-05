@@ -307,8 +307,10 @@ angular.module('starter.services', ['firebase'])
                 }
                 return cart
             },
-            deleteFromCart:function(productInfo){
-                console.log(productInfo)
+            deleteFromCart:function(cart,productInfo){
+                //console.log(productInfo)
+                cart.splice(productInfo, 1)  ;
+                return cart;
             },
             getCart:function(){
                 var currentCart = []
@@ -346,6 +348,10 @@ angular.module('starter.services', ['firebase'])
                 })
                 //console.log(currentCart)
                 return currentCart
+            },
+            saveCart:function(){
+                cart = []
+                return cart
             }
 
         }
