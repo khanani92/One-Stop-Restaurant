@@ -46,7 +46,7 @@ angular.module('starter.controllers', [])
         $scope.placeOrder =function(){
             $scope.showList = false;
             $scope.cart= Cart.saveCart()
-            
+
         }
 
     })
